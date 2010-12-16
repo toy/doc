@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+
+case
+when %w[-v --version].include?(ARGV.first)
+  puts "#{File.basename($0)} #{(Pathname(__FILE__) + '../../VERSION').read}"
+  exit
+when %w[-h --help].include?(ARGV.first) || ARGV.length != 1
+  puts "#{File.basename($0)} dir_name"
+  exit
+else
+  dir = Pathname(ARGV.first)
+  dir.mkpath
+
+  rakefile_path = dir + 'Rakefile'
+  rakefile_data = <<-RUBY
+require 'doc'
+
+Doc::Tasks.new do |doc|
+  doc.title 'ruby, rails, gems'
+  doc.min_update_interval 1.week
+
+  doc.ruby
+  doc.rails
+  doc.gems :except => %w[mysql rails actionmailer actionpack activerecord activeresource activesupport]
+  doc.plugins '~/.plugins'
+end
+  RUBY
+
+  if rakefile_path.exist? && rakefile_path.read != rakefile_data
+    puts 'Rakefile exists, overwrite?'
+    abort unless %w[o y].include?(STDIN.gets.strip.downcase[0, 1])
+  end
+
+  (dir + 'Rakefile').open('w') do |f|
+    f.write rakefile_data
+  end
+
+  puts %{Next steps:}
+  puts %{  cd "#{dir}"}
+  puts %{  #{ENV['EDITOR'] || 'vim'} Rakefile}
+  puts %{  rake build}
+end
