@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
     "README.markdown",
     "Rakefile",
     "VERSION",
+    "doc.gemspec",
     "lib/doc.rb"
   ]
   s.homepage = %q{http://github.com/toy/doc}
