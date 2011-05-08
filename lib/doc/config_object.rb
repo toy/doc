@@ -43,6 +43,32 @@ module Doc
       end
     end
 
+    def check_options!(required_keys, optional_keys)
+      errors = []
+
+      unless (missing_keys = required_keys - keys).empty?
+        errors << "missing required keys: #{missing_keys.join(', ')}"
+      end
+
+      left_keys = keys - required_keys
+      optional_keys.each do |key_group|
+        key_group = Array(key_group)
+        if key_group.length > 1
+          if (clashing_keys = keys & key_group).length > 1
+            errors << "clash of mutually exclusive keys: #{clashing_keys.join(', ')}"
+          end
+        end
+        left_keys -= key_group
+      end
+      unless left_keys.empty?
+        errors << "unknown keys: #{left_keys.join(', ')}"
+      end
+
+      unless errors.empty?
+        raise ConfigError.new(self, errors.join('; '))
+      end
+    end
+
   private
 
     def check_argument_count(arguments, accepts)

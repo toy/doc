@@ -4,7 +4,7 @@ module Doc
       default_config_key :only
 
       def configure(update)
-        check_config_options([[:only, :except], :versions, :prerelease])
+        config.check_options!([], [[:only, :except], :versions, :prerelease])
 
         [:only, :except].each do |key|
           config[key] = Array(config[key]).map(&:to_s) if config[key]
@@ -16,7 +16,7 @@ module Doc
         if config[:only]
           absent = config[:only] - @specs.map(&:name)
           unless absent.empty?
-            raise ConfiguratorError.new(self, "can't find gems: #{absent.join(', ')}")
+            raise ConfigError.new(self, "can't find gems: #{absent.join(', ')}")
           end
         end
 

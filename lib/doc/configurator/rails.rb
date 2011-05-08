@@ -6,7 +6,7 @@ module Doc
       default_config_key :version
 
       def configure(update)
-        check_config_options([:version, :prerelease])
+        config.check_options!([], [:version, :prerelease])
 
         search_versions = Array(config[:version] || [nil])
         @versions = search_versions.map do |search_version|
@@ -14,7 +14,7 @@ module Doc
           versions = Gem.source_index.search(dependency).map(&:version)
           versions.reject!(&:prerelease?) unless config[:prerelease]
           unless version = versions.sort.last
-            raise ConfiguratorError.new(self, "can't find rails version matching: #{search_version}")
+            raise ConfigError.new(self, "can't find rails version matching: #{search_version}")
           end
           version
         end

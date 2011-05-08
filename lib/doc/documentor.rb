@@ -7,6 +7,8 @@ module Doc
     attr_reader :base_dir, :sources_dir, :docs_dir, :public_dir
     def initialize(*arguments, &block)
       config = RootConfig.new(self, *arguments, &block)
+      config.check_options!([], [:title, :min_update_interval, :clean_after, :public_dir])
+
       @title = config[:title] || 'ruby documentation'
       @min_update_interval = config[:min_update_interval] || 1.hour
       @clean_after = config[:clean_after]

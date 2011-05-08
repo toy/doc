@@ -6,7 +6,7 @@ module Doc
       default_config_key :glob
 
       def configure(update)
-        check_config_options([:glob, :main, :file_list, :title])
+        config.check_options!([], [:glob, :main, :file_list, :title])
 
         @path_pairs = []
         Array(config[:glob]).map do |glob|
@@ -21,7 +21,7 @@ module Doc
         end.flatten
 
         if @path_pairs.empty?
-          raise ConfiguratorError.new(self, "expanding #{config[:glob].join(', ')} gave empty list")
+          raise ConfigError.new(self, "expanding #{config[:glob].join(', ')} gave empty list")
         end
 
         @main = Array(config[:main])
@@ -31,20 +31,20 @@ module Doc
           case @file_list
           when Proc
             if @file_list.arity != 1
-              raise ConfiguratorError.new(self, "proc should have on parameter for instance of FileList")
+              raise ConfigError.new(self, "proc should have on parameter for instance of FileList")
             end
           when Array
             unless @file_list.all?{ |rule| rule =~ /^\+|-/ }
-              raise ConfiguratorError.new(self, "all rules must start with + or -")
+              raise ConfigError.new(self, "all rules must start with + or -")
             end
           else
-            raise ConfiguratorError.new(self, "file_list should be either array in form %w[+a/* -b/*] or proc receiving instance of FileList")
+            raise ConfigError.new(self, "file_list should be either array in form %w[+a/* -b/*] or proc receiving instance of FileList")
           end
         end
 
         if @title = config[:title]
           unless @title.is_a?(Proc) && @title.arity == 1
-            raise ConfiguratorError.new(self, "title should be an instance of Proc receiving one argument (path)")
+            raise ConfigError.new(self, "title should be an instance of Proc receiving one argument (path)")
           end
         end
       end

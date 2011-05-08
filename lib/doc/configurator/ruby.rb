@@ -7,7 +7,7 @@ module Doc
       default_config_key :binary
 
       def configure(update)
-        check_config_options([[:source, :archive, :version, :binary], :format, :except, :index])
+        config.check_options!([], [[:source, :archive, :version, :binary], :format, :except, :index])
 
         @source_dirs = case
         when config[:source]
@@ -37,7 +37,7 @@ module Doc
           end
         end
       rescue => e
-        raise ConfiguratorError.new(self, e)
+        raise ConfigError.new(self, e)
       end
 
       def avaliable_formats
