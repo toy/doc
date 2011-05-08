@@ -8,6 +8,5 @@ end
 
 glob_require 'doc/configurator/*.rb'
 
-# TODO: custom public dir
 # TODO: readme!!!
 # TODO: kill sdoc_all hehe >:->

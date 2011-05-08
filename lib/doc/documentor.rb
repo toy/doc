@@ -17,7 +17,16 @@ module Doc
       @base_dir = FSPath('.').expand_path
       @sources_dir = base_dir / 'sources'
       @docs_dir = base_dir / 'docs'
-      @public_dir = base_dir / 'public'
+      if config[:public_dir]
+        config[:public_dir] = FSPath(config[:public_dir]).cleanpath.to_s
+        if config[:public_dir] == '.'
+          raise ConfigError.new(self, "can't use base dir: #{config[:public_dir].inspect}")
+        end
+        if config[:public_dir].split(FSPath::SEPARATOR_PAT).include?('..')
+          raise ConfigError.new(self, ".. in public_dir: #{config[:public_dir].inspect}")
+        end
+      end
+      @public_dir = base_dir / (config[:public_dir] || 'public')
     end
 
     def build(update = false)
