@@ -24,7 +24,6 @@ Doc::Tasks.new do |doc|
   doc.ruby
   doc.rails
   doc.gems :except => %w[mysql rails actionmailer actionpack activerecord activeresource activesupport]
-  doc.plugins '~/.plugins'
 end
   RUBY
 
