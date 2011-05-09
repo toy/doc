@@ -8,5 +8,5 @@ end
 
 glob_require 'doc/configurator/*.rb'
 
-# TODO: readme!!!
+# TODO: rubygems deprecations
 # TODO: kill sdoc_all hehe >:->
