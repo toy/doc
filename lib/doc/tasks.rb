@@ -30,6 +30,10 @@ module Doc
     def define
       task :default => :build
 
+      task :config do
+        count_time{ documentor.config }
+      end
+
       desc 'build documentation'
       task :build do
         count_time{ documentor.build }

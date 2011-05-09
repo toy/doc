@@ -29,7 +29,7 @@ module Doc
       @public_dir = base_dir / (config[:public_dir] || 'public')
     end
 
-    def build(update = false)
+    def config(update = false)
       started = Time.now
 
       last_updated_path = base_dir / '.last_updated'
@@ -40,10 +40,14 @@ module Doc
       end
       last_updated_path.touch if update
 
-      root_task = RootMerger.new(self, {
+      RootMerger.new(self, {
         :title => title,
         :tasks => configurators.with_progress('tasks').map(&:tasks).flatten
       })
+    end
+
+    def build(update = false)
+      root_task = config(update)
 
       root_task.run
 
