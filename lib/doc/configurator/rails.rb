@@ -10,8 +10,8 @@ module Doc
 
         search_versions = Array(config[:version] || [nil])
         @versions = search_versions.map do |search_version|
-          dependency = Gem::Dependency.new('rails', search_version.is_a?(Integer) ? "~> #{search_version}" : search_version)
-          versions = Gem.source_index.search(dependency).map(&:version)
+          requirement = Gem::Requirement.new(search_version.is_a?(Integer) ? "~> #{search_version}" : search_version)
+          versions = Gem::Specification.find_all_by_name('rails', requirement).map(&:version)
           versions.reject!(&:prerelease?) unless config[:prerelease]
           unless version = versions.sort.last
             raise ConfigError.new(self, "can't find rails version matching: #{search_version}")
