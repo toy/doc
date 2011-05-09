@@ -64,6 +64,7 @@ end
 
 class FSPath
   def touch(atime = nil, mtime = nil)
+    open('w'){} unless exist?
     utime(atime ||= Time.now, mtime || atime)
   end
 
