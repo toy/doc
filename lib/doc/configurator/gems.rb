@@ -50,11 +50,15 @@ module Doc
     private
 
       def latest_specs(prerelease)
-        Gem.source_index.latest_specs(prerelease)
+        Gem::Specification.latest_specs(prerelease)
       end
 
       def all_specs(prerelease)
-        Gem.source_index.send(prerelease ? :gems : :released_gems).values
+        if prerelease
+          Gem::Specification.to_a
+        else
+          Gem::Specification.select{ |spec| !spec.version.prerelease? }
+        end
       end
 
       def sort_specs(specs)
