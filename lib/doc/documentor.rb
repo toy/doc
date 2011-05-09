@@ -30,8 +30,6 @@ module Doc
     end
 
     def config(update = false)
-      started = Time.now
-
       last_updated_path = base_dir / '.last_updated'
       update ||= last_updated_path.exist? ? (Time.now > last_updated_path.mtime + min_update_interval) : true
 
@@ -47,6 +45,7 @@ module Doc
     end
 
     def build(update = false)
+      started = Time.now
       root_task = config(update)
 
       root_task.run
