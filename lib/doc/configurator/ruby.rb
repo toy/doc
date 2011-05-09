@@ -17,7 +17,7 @@ module Doc
         when config[:version]
           Array(config[:version]).map{ |version| by_version(version, update) }
         else
-          Array(config[:binary]).map{ |binary| by_binary(binary, update) }
+          Array(config[:binary] || [nil]).map{ |binary| by_binary(binary, update) }
         end
 
         @format = (config[:format] || :all).to_sym
