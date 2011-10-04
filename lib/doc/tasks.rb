@@ -2,6 +2,8 @@ require 'doc'
 
 module Doc
   class Tasks
+    include Rake::DSL
+
     attr_reader :documentor
     def initialize(*arguments, &block)
       @documentor = Documentor.new(*arguments, &block)
