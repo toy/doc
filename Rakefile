@@ -11,7 +11,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/toy/#{name}"
   gem.license = 'MIT'
   gem.authors = ['Ivan Kuchin']
-  gem.add_runtime_dependency 'sdoc'
+  gem.add_runtime_dependency 'sdoc', '= 0.2.20'
   gem.add_runtime_dependency 'fspath'
   gem.add_runtime_dependency 'progress'
   gem.add_runtime_dependency 'net-ftp-list'
