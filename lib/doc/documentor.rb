@@ -51,7 +51,7 @@ module Doc
       root_task.run
 
       if clean_after
-        (sources_dir.children + docs_dir.children).each do |dir|
+        (sources_dir.directory? ? sources_dir.children : [] + docs_dir.children).each do |dir|
           if started - dir.mtime > clean_after
             dir.rmtree_verbose
           end
