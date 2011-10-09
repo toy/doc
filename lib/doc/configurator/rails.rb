@@ -39,7 +39,7 @@ module Doc
       def paths_to_document_for_version(version)
         code = if version_less_than_3?(version)
           <<-RUBY
-            require 'rake/rdoctask'
+            require 'rdoc/task'
             gem 'rails', ARGV.first
 
             Rake::FileList.class_eval do
@@ -77,7 +77,7 @@ module Doc
           RUBY
         else
           <<-RUBY
-            require 'rake/rdoctask'
+            require 'rdoc/task'
             gem 'rails', ARGV.first
 
             class RDocTaskWithoutDescriptions < Rake::RDocTask
