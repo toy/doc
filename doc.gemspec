@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "doc"
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ivan Kuchin"]
-  s.date = "2011-10-04"
+  s.date = "2011-10-09"
   s.description = "Generate `Rakefile` with `docr` and get searchable documentation for ruby, rails, gems, plugins and all other ruby code in one place"
   s.executables = ["docr"]
   s.extra_rdoc_files = [
@@ -49,7 +49,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/toy/doc"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.8.11"
   s.summary = "Get all ruby documentation in one place"
 
   if s.respond_to? :specification_version then
