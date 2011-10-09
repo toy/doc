@@ -72,5 +72,9 @@ module Doc
     def failed?
       @state == :failed
     end
+
+    def loaded_gem_version(gem)
+      Gem.loaded_specs[gem].version
+    end
   end
 end

@@ -64,9 +64,7 @@ module Doc
     end
 
     def build
-      cmd = Command.new('sdoc')
-      cmd.add '--format=shtml'
-      cmd.add '--template=direct'
+      cmd = Command.new('sdoc', "_#{loaded_gem_version('sdoc')}_")
       cmd.add '--line-numbers'
       cmd.add '--all'
       cmd.add '--charset=utf-8'
