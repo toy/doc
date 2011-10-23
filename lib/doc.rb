@@ -7,5 +7,3 @@ module Doc
 end
 
 glob_require 'doc/configurator/*.rb'
-
-# TODO: kill sdoc_all hehe >:->
