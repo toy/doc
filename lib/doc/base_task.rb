@@ -1,4 +1,5 @@
 require 'digest/sha2'
+require 'sdoc'
 
 module Doc
   class BaseTask
