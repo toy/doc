@@ -12,7 +12,7 @@ Jeweler::Tasks.new do |gem|
   gem.license = 'MIT'
   gem.authors = ['Ivan Kuchin']
 
-  gem.add_runtime_dependency 'sdoc'
+  gem.add_runtime_dependency 'sdoc', '~> 0.2.0'
   gem.add_runtime_dependency 'fspath'
   gem.add_runtime_dependency 'progress'
   gem.add_runtime_dependency 'net-ftp-list'
