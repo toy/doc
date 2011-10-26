@@ -5,22 +5,24 @@
 
 Gem::Specification.new do |s|
   s.name = "doc"
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ivan Kuchin"]
-  s.date = "2011-10-23"
+  s.date = "2011-10-26"
   s.description = "Generate `Rakefile` with `docr` and get searchable documentation for ruby, rails, gems, plugins and all other ruby code in one place"
   s.executables = ["docr"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.markdown"
+    "README.markdown",
+    "TODO"
   ]
   s.files = [
     ".tmignore",
     "LICENSE.txt",
     "README.markdown",
     "Rakefile",
+    "TODO",
     "VERSION",
     "bin/docr",
     "doc.gemspec",
@@ -56,7 +58,7 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<sdoc>, [">= 0"])
+      s.add_runtime_dependency(%q<sdoc>, ["~> 0.2.0"])
       s.add_runtime_dependency(%q<fspath>, [">= 0"])
       s.add_runtime_dependency(%q<progress>, [">= 0"])
       s.add_runtime_dependency(%q<net-ftp-list>, [">= 0"])
@@ -64,7 +66,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.1"])
       s.add_development_dependency(%q<rake-gem-ghost>, [">= 0"])
     else
-      s.add_dependency(%q<sdoc>, [">= 0"])
+      s.add_dependency(%q<sdoc>, ["~> 0.2.0"])
       s.add_dependency(%q<fspath>, [">= 0"])
       s.add_dependency(%q<progress>, [">= 0"])
       s.add_dependency(%q<net-ftp-list>, [">= 0"])
@@ -73,7 +75,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rake-gem-ghost>, [">= 0"])
     end
   else
-    s.add_dependency(%q<sdoc>, [">= 0"])
+    s.add_dependency(%q<sdoc>, ["~> 0.2.0"])
     s.add_dependency(%q<fspath>, [">= 0"])
     s.add_dependency(%q<progress>, [">= 0"])
     s.add_dependency(%q<net-ftp-list>, [">= 0"])
