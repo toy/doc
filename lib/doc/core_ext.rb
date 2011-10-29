@@ -1,15 +1,5 @@
 require 'fspath'
 
-def glob_require(*globs)
-  globs.each do |glob|
-    $LOAD_PATH.each do |load_dir|
-      FSPath.glob(File.join(load_dir, glob)).each do |path|
-        require path.relative_path_from(FSPath(load_dir)).to_s
-      end
-    end
-  end
-end
-
 class Integer
   def minutes
     60 * self

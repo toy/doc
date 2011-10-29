@@ -6,4 +6,6 @@ module Doc
   smart_autoload :Command
 end
 
-glob_require 'doc/configurator/*.rb'
+%w[gems paths rails ruby].each do |name|
+  require "doc/configurator/#{name}"
+end
