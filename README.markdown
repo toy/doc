@@ -83,4 +83,4 @@ Use `:title` to specify title, it must be a proc receiving path and returning ti
 
 ## Copyright
 
-Copyright (c) 2010 Ivan Kuchin. See LICENSE.txt for details.
+Copyright (c) 2010-2011 Ivan Kuchin. See LICENSE.txt for details.
