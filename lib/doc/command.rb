@@ -17,11 +17,11 @@ module Doc
 
     def run
       command_string = command.length == 1 ? command.first : command.map(&:to_s).shelljoin
-      puts "cd #{Dir.pwd.shellescape}; #{command_string}"
       output = IO.popen("#{command_string} 2>&1", &:read)
       @status = $?
       status.success? || begin
-        print output
+        $stderr.puts "cd #{Dir.pwd.shellescape}; #{command_string}"
+        $stderr.puts output
         case
         when status.signaled?
           if status.termsig == 2
