@@ -17,7 +17,10 @@ module Doc
     RUBY
 
     def run
-      tasks.with_progress('build').each(&:run)
+      tasks.with_progress('build').each do |task|
+        Progress.note = task.dir_name
+        task.run
+      end
       super(failed_state_changed?)
       write_failed_state if succeeded?
     end
