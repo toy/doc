@@ -33,14 +33,14 @@ module Doc
       last_updated_path = base_dir / '.last_updated'
       update ||= last_updated_path.exist? ? (Time.now > last_updated_path.mtime + min_update_interval) : true
 
-      configurators.with_progress('config/update').each do |configurator|
+      configurators.with_progress('configuring and updating').each do |configurator|
         configurator.configure(update)
       end
       last_updated_path.touch if update
 
       RootMerger.new(self, {
         :title => title,
-        :tasks => configurators.with_progress('tasks').map(&:tasks).flatten
+        :tasks => configurators.with_progress('generating tasks').map(&:tasks).flatten
       })
     end
 

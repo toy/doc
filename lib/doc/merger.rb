@@ -17,7 +17,7 @@ module Doc
     RUBY
 
     def run
-      tasks.with_progress('build').each do |task|
+      tasks.with_progress('building documentation').each do |task|
         Progress.note = task.dir_name
         task.run
       end
