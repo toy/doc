@@ -16,8 +16,12 @@ module Doc
       tasks.map(&:failed?)
     RUBY
 
+    def progress_message
+      "building #{title}"
+    end
+
     def run
-      tasks.with_progress('building documentation').each do |task|
+      tasks.with_progress(progress_message).each do |task|
         Progress.note = task.dir_name
         task.run
       end

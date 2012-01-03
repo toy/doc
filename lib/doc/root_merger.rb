@@ -4,6 +4,10 @@ module Doc
       documentor.public_dir
     end
 
+    def progress_message
+      'building docs'
+    end
+
     def run
       super
       if succeeded?
