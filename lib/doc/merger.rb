@@ -21,11 +21,13 @@ module Doc
         Progress.note = task.dir_name
         task.run
       end
-      super(failed_state_changed?)
+      super(failed_state_changed? || tasks.any?(&:succeeded?))
       write_failed_state if succeeded?
     end
 
     def build
+      $stderr.puts "Merging #{title}"
+
       succeded_tasks = tasks.reject(&:failed?)
       task_titles = succeded_tasks.map{ |task| task.title.gsub(',', '_') }.join(',')
       task_urls = succeded_tasks.map{ |task| task.doc_dir.relative_path_from(doc_dir).to_s.strip }.join(' ')
