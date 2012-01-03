@@ -20,8 +20,7 @@ module Doc
       output = IO.popen("#{command_string} 2>&1", &:read)
       @status = $?
       status.success? || begin
-        $stderr.puts "cd #{Dir.pwd.shellescape}; #{command_string}"
-        $stderr.puts output
+        $stderr.puts "cd #{Dir.pwd.shellescape}; #{command_string}\n#{output}"
         case
         when status.signaled?
           if status.termsig == 2
