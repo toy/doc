@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'doc'
-  s.version     = '0.2.6'
+  s.version     = '0.2.7'
   s.summary     = %q{Get all ruby documentation in one place}
   s.description = %Q{Generate `Rakefile` with `docr` and get searchable documentation for ruby, rails, gems, plugins and all other ruby code in one place}
   s.homepage    = "http://github.com/toy/#{s.name}"
