@@ -24,7 +24,7 @@ module Doc
     def count_time
       start = Time.now
       yield
-      puts "It took #{humanize_time(Time.now - start)}"
+      $stderr.puts "It took #{humanize_time(Time.now - start)}"
     end
 
   private
