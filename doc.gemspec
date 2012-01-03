@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'sdoc', '~> 0.2.0'
   s.add_runtime_dependency 'fspath'
-  s.add_runtime_dependency 'progress'
+  s.add_runtime_dependency 'progress', '~> 2.4'
   s.add_runtime_dependency 'net-ftp-list'
   s.add_runtime_dependency 'rake'
 end
