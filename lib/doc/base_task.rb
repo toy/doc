@@ -1,4 +1,5 @@
 require 'digest/sha2'
+require 'shellwords'
 require 'sdoc'
 
 module Doc
@@ -57,7 +58,10 @@ module Doc
     abstract_method :build
     def run(force = false)
       if force || run?
-        doc_dir.rmtree_verbose if doc_dir.exist?
+        if doc_dir.exist?
+          in_progress_message %W[rm -r #{doc_dir}].shelljoin
+          doc_dir.rmtree
+        end
         build
         write_config_state
         @state = control_files_exist? ? :succeeded : :failed
@@ -76,6 +80,14 @@ module Doc
 
     def loaded_gem_version(gem)
       Gem.loaded_specs[gem].version
+    end
+
+    def in_progress_message(message)
+      if Progress.running?
+        Progress.note = message
+      else
+        $stderr.puts message
+      end
     end
   end
 end

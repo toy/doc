@@ -30,7 +30,7 @@ module Doc
     end
 
     def build
-      $stderr.puts "Merging #{title}"
+      in_progress_message "Merging #{title}"
 
       succeded_tasks = tasks.reject(&:failed?)
       task_titles = succeded_tasks.map{ |task| task.title.gsub(',', '_') }.join(',')
