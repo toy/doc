@@ -17,7 +17,7 @@ module Doc
     RUBY
 
     def progress_message
-      "building #{title}"
+      title
     end
 
     def run
