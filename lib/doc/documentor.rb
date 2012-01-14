@@ -4,8 +4,10 @@ require 'progress'
 module Doc
   class Documentor
     attr_reader :title, :min_update_interval, :clean_after, :configurators
-    attr_reader :base_dir, :sources_dir, :docs_dir, :public_dir
+    attr_reader :base_dir, :sources_dir, :docs_dir, :public_dir, :started
     def initialize(*arguments, &block)
+      @started = Time.now
+
       config = RootConfig.new(self, *arguments, &block)
       config.check_options!([], [:title, :min_update_interval, :clean_after, :public_dir])
 
@@ -45,13 +47,15 @@ module Doc
     end
 
     def build(update = false)
-      started = Time.now
       root_task = config(update)
 
       root_task.run
 
       if clean_after
-        (sources_dir.directory? ? sources_dir.children : [] + docs_dir.children).each do |dir|
+        candidates = []
+        candidates += sources_dir.children if sources_dir.directory?
+        candidates += docs_dir.children if docs_dir.directory?
+        candidates.each do |dir|
           if started - dir.mtime > clean_after
             dir.rmtree_verbose
           end
