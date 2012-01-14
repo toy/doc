@@ -26,6 +26,7 @@ module Doc
         end
         if [:separate, :integrate].include?(@format)
           @stdlib_config = stdlib_config(update) or raise 'can\'t get stdlib config'
+          stdlib_config_path.touch
         end
 
         @except_regexp = /^(?:lib|ext)\/(?:#{Array(config[:except]).map(&Regexp.method(:escape)).join('|')})(?:.rb$|\/)/
