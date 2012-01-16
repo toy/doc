@@ -34,7 +34,7 @@ module Doc
 
       succeded_tasks = tasks.reject(&:failed?)
       task_titles = succeded_tasks.map{ |task| task.title.gsub(',', '_') }.join(',')
-      task_urls = succeded_tasks.map{ |task| task.doc_dir.relative_path_from(doc_dir).to_s.strip }.join(' ')
+      task_urls = succeded_tasks.map{ |task| task.doc_dir.relative_path_from(doc_dir) }.join(' ')
 
       cmd = Command.new('sdoc-merge', "_#{loaded_gem_version('sdoc')}_")
       cmd.add "--op=#{doc_dir}"
