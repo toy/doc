@@ -45,5 +45,16 @@ module Doc
 
       cmd.run
     end
+
+    def symlink_children_to(path)
+      tasks.reject(&:failed?).each do |task|
+        task.symlink_to(path)
+      end
+    end
+
+    def symlink_to(path)
+      symlink_children_to(path)
+      super
+    end
   end
 end

@@ -70,6 +70,10 @@ module Doc
       @state = :failed
     end
 
+    def symlink_to(path)
+      (path / doc_dir.basename).make_symlink(doc_dir.relative_path_from(path))
+    end
+
     def succeeded?
       @state == :succeeded
     end

@@ -11,7 +11,9 @@ module Doc
     def run
       super
       if succeeded?
-        (doc_dir / documentor.docs_dir.basename).make_symlink(documentor.docs_dir.relative_path_from(doc_dir))
+        public_doc_dir = doc_dir / documentor.docs_dir.basename
+        public_doc_dir.mkpath
+        symlink_children_to(public_doc_dir)
       end
     end
   end
