@@ -33,17 +33,21 @@ module Doc
       in_progress_message "Merging #{title}"
 
       succeded_tasks = tasks.reject(&:failed?)
-      task_titles = succeded_tasks.map{ |task| task.title.gsub(',', '_') }.join(',')
-      task_urls = succeded_tasks.map{ |task| task.doc_dir.relative_path_from(doc_dir) }.join(' ')
+      task_titles = succeded_tasks.map{ |task| task.title.gsub(',', '_') }
+      task_urls = succeded_tasks.map{ |task| task_url(task) }
 
       cmd = Command.new('sdoc-merge', "_#{loaded_gem_version('sdoc')}_")
       cmd.add "--op=#{doc_dir}"
       cmd.add "--title=#{title}"
-      cmd.add "--names=#{task_titles}"
-      cmd.add "--urls=#{task_urls}"
+      cmd.add "--names=#{task_titles.join(',')}"
+      cmd.add "--urls=#{task_urls.join(' ')}"
       cmd.add *succeded_tasks.map(&:doc_dir)
 
       cmd.run
+    end
+
+    def task_url(task)
+      task.doc_dir.relative_path_from(doc_dir)
     end
 
     def symlink_children_to(path)
