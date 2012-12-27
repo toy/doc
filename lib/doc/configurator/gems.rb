@@ -7,7 +7,7 @@ module Doc
         config.check_options!([], [[:only, :except], :versions, :prerelease])
 
         [:only, :except].each do |key|
-          config[key] = Array(config[key]).map(&:to_s) if config[key]
+          config[key] = Array(config[key]).flatten.map(&:to_s) if config[key]
         end
 
         @prerelease = !!config[:prerelease]
