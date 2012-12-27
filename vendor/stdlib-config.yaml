@@ -1,0 +1,692 @@
+#FIELDS:
+#  - target: >
+#                The name of the target; this directory will be used to hold
+#                docs.
+#  - section: >
+#                'stdlib' for standard library, 'ext' for standard library
+#                extensions (compiled), 'core' for core Ruby classes, 'extra'
+#                for others.
+#  - base: >
+#                Useful only if section is 'extra'.  The base directory of the
+#                package.
+#  - extra_sources: >
+#                List of special files relative to base, that need to be
+#                RDoc'ed in addition to the obvious ones.
+#  - mainpage: >
+#                Feeds to RDoc's '--main' option.  Optional.
+#  - desciption: >
+#                Description of the package for overview page.
+  
+
+targets:
+
+  - target: abbrev
+    section: stdlib
+    description: |
+      Calculates the set of unique abbreviations for a given set of strings.
+
+
+  - target: base64
+    section: stdlib
+    description: |
+      Methods for base64-encoding and -decoding strings.
+
+
+  - target: benchmark
+    section: stdlib
+    description: |
+      Contains routines for benchmarking code.
+
+
+  - target:  cgi
+    section: stdlib
+    mainpage: cgi.rb
+    description: |
+      CGI library, including methods for query parsing, HTML generation and
+      session handling.
+
+
+  - target: complex
+    section: stdlib
+    description: |
+      Implements a complex number type, Complex.
+
+
+  - target: csv
+    section: stdlib
+    description: |
+      Read and write CSV (comma separated values) data.
+
+
+  - target: date
+    section: stdlib
+    score: 7
+    description: |
+      Implements the Date class.
+
+
+  - target: delegate
+    section: stdlib
+    description: |
+      Simplifies delegation to methods of other classes.
+
+
+  - target: drb
+    section: stdlib
+    mainpage: drb/drb.rb
+    score: 7
+    description: |
+      Distributed Ruby.  Talk to objects across a network.
+
+
+  - target: English
+    section: stdlib
+    description: |
+      "English-language long names for Ruby's special variables."
+
+
+  - target: erb
+    section: stdlib
+    description: |
+      "Templating system whereby you embed Ruby code in text/HTML/..."
+
+
+  - target: fileutils
+    section: stdlib
+    description: |
+      Utility module for copying, moving, renaming files, etc.
+
+
+  - target: finalize
+    section: stdlib
+    description: |
+
+
+  - target: find
+    section: stdlib
+    description: |
+      Recursively descend directories.
+
+
+  - target: forwardable
+    section: stdlib
+    description: |
+      Method-level delegation.
+
+
+  - target: ftools
+    section: stdlib
+    description: |
+      Similar to, but older than, fileutils.
+
+
+  - target: generator
+    section: stdlib
+    description: |
+      Converts an internal iterator to an external iterator.
+
+
+  - target: getoptlong
+    section: stdlib
+    description: |
+      A common library for parsing command-line options.  See optparse for a stronger
+      Ruby solution.
+
+
+  - target: gserver
+    section: stdlib
+    description: |
+      Generic server.
+
+
+  - target: importenv
+    section: stdlib
+    description: |
+      Imports environment variables as global variables.
+
+
+  - target: ipaddr
+    section: stdlib
+    description: |
+      Manipulate IP addresses.
+
+
+  - target: jcode
+    section: stdlib
+    description: |
+      Handle Japanese strings.
+
+
+  - target: logger
+    section: stdlib
+    description: |
+      Simple logging mechanism.
+
+
+  - target: mailread
+    section: stdlib
+    description: |
+
+
+  - target: mathn
+    section: stdlib
+    description: |
+      Make all numeric classes work well together.
+
+
+  - target: matrix
+    section: stdlib
+    description: |
+      Defines the Matrix and Vector classes.
+
+
+  - target: mkmf
+    section: stdlib
+    description: |
+      Generate Makefiles for Ruby extensions.
+
+
+  - target: monitor
+    section: stdlib
+    description: |
+      Add monitor function to an arbitrary object.
+
+
+  - target: mutex_m
+    section: stdlib
+    description: |
+
+
+  - target: net/ftp
+    section: stdlib
+    description: |
+      FTP library for accessing remote files.
+
+
+  - target: net/http
+    section: stdlib
+    description: |
+      HTTP library for accessing web pages.
+
+
+  - target: net/imap
+    section: stdlib
+    description: |
+      IMAP library for accessing email on a server.
+
+
+  - target: net/pop
+    section: stdlib
+    description: |
+      POP library for accessing email on a server.
+
+
+  - target: net/smtp
+    section: stdlib
+    description: |
+      SMTP library for sending email.
+
+
+  - target: net/telnet
+    section: stdlib
+    description: |
+      Telnet library for executing commands remotely.
+
+
+  - target: observer
+    section: stdlib
+    description: |
+      Implements the observer pattern; objects can be notified of changes to
+      other objects.
+
+
+  - target: open-uri
+    section: stdlib
+    description: |
+      Allows file-like access to URIs like "ftp://server/filename".
+
+
+  - target: open3
+    section: stdlib
+    description: |
+      Run external commands and have access to stdin, stdout, and stderr.
+
+
+  - target: optparse
+    section: stdlib
+    score: 6
+    description: |
+      A more advanced command-line options parsing library than getoptlong.
+
+
+  - target: ostruct
+    section: stdlib
+    description: |
+      Open structs.  You can add attributes dynamically.
+
+
+  - target: parsedate
+    section: stdlib
+    description: |
+      A module for extracting date information from a String.
+
+
+  - target: pathname
+    section: stdlib
+    description: |
+      Object-oriented pathname.
+
+
+  - target: ping
+    section: stdlib
+    description: |
+      Simple 'ping' implementation.
+
+
+  - target: pp
+    section: stdlib
+    description: |
+      Implements Kernel.pp so you can pretty-print any object.
+
+
+  - target: prettyprint
+    section: stdlib
+    description: |
+      Implements a pretty-printing algorithm.  See 'pp'.
+
+
+  - target: profile
+    section: stdlib
+    description: |
+      Runtime profiler.
+
+
+  - target: profiler
+    section: stdlib
+    description: |
+      Runtime profiling library.
+
+
+  - target: pstore
+    section: stdlib
+    description: |
+      Simple object-oriented database using Marshal.
+
+
+  - target: racc/parser
+    section: stdlib
+    description: |
+
+
+  - target: rational
+    section: stdlib
+    description: |
+      Implements a rational number type, Rational.
+
+
+  - target: rdoc
+    section: stdlib
+    extra_sources: rdoc/README
+    mainpage: rdoc/README
+    description: |
+      "Ruby's API documentation generator."
+
+
+  - target: readbytes
+    section: stdlib
+    description: |
+      Implements IO#readbytes.
+
+
+  - target: resolv-replace
+    section: stdlib
+    description: |
+
+
+  - target: resolv
+    section: stdlib
+    description: |
+      Find IP address from hostname, or vice versa, and more.
+
+
+  - target: rexml
+    section: stdlib
+    mainpage: rexml/rexml.rb
+    description: |
+      Pure-Ruby XML parser and emitter.
+
+
+  - target: rinda
+    section: stdlib
+    mainpage: rinda/rinda.rb
+    description: |
+      A Ruby implementation of the Linda distibuted computing paradigm.
+
+
+  - target: rss
+    section: stdlib
+    mainpage: rss/rss.rb
+    description: |
+      RSS (Rich Site Syndicator) parser and emitter.
+
+
+  - target: runit
+    section: stdlib
+    mainpage: runit/testcase.rb
+    description: |
+      Older unit testing framework.  Taken over by test/unit.
+
+
+  - target: scanf
+    section: stdlib
+    description: |
+      "Analogous to C's scanf.  Reads formatted data."
+
+
+  - target: set
+    section: stdlib
+    description: |
+      Implements the Set data type.
+
+
+  - target: shell
+    section: stdlib
+    description: |
+      Enables shell-like activities in plain Ruby.
+
+
+  - target: singleton
+    section: stdlib
+    description: |
+      Implements the singleton design pattern, whereby a certain class has only one
+      instance.
+
+
+  - target: soap
+    section: stdlib
+    mainpage: soap/soap.rb
+    description: |
+      Implements the SOAP protocol.
+
+
+  - target: sync
+    section: stdlib
+    description: |
+      Phase lock with counter.
+
+
+  - target: tempfile
+    section: stdlib
+    description: |
+      Create and use a temporary file.
+
+
+  - target: test/unit
+    section: stdlib
+    mainpage: test/unit.rb
+    description: |
+      "Ruby's standard unit testing framework."
+
+
+  - target: thread
+    section: stdlib
+    description: |
+      Support for threads, including Mutex, ConditionVariable, and Queue.
+
+
+  - target: thwait
+    section: stdlib
+    description: |
+      Thread synchronization class.
+
+
+  - target: time
+    section: stdlib
+    description: |
+      Extends built-in Time class to support various standard time formats.
+
+
+  - target: timeout
+    section: stdlib
+    description: |
+      Ensures some code completes within a certain time, or throws exception.
+
+
+  - target: tmpdir
+    section: stdlib
+    description: |
+      Retrieve temporary directory path.
+
+
+  - target: tracer
+    section: stdlib
+    description: |
+      Trace program execution.
+
+
+  - target: tsort
+    section: stdlib
+    description: |
+      Topological sorting for strongly connected components.
+
+
+  - target: un
+    section: stdlib
+    description: |
+      Utility module for file operations in command-line scripts.
+
+
+  - target: uri
+    section: stdlib
+    description: |
+      Universal Resource Identifier implementation.
+
+
+  - target: weakref
+    section: stdlib
+    description: |
+      Implements weak references.
+
+
+  - target: webrick
+    section: stdlib
+    description: |
+      A servlet container and self-contained web server.
+
+
+  - target: wsdl
+    section: stdlib
+    mainpage: wsdl/wsdl.rb
+    description: |
+      Web Services Description Language.
+
+
+  - target: xmlrpc
+    section: stdlib
+    extra_sources: xmlrpc/README.txt
+    mainpage: xmlrpc/README.txt
+    description: |
+      XML RPC (remote procedure call) client and server implementations.
+
+
+  - target: xsd
+    section: stdlib
+    mainpage: xsd/xmlparser.rb
+    description: |
+       XML Schema Definition.
+
+
+  - target: yaml
+    section: stdlib
+    description: |
+      Data serialization format designed for ease of human use.
+
+
+####
+#### 'ext' targets
+####
+
+
+  - target: bigdecimal
+    section: ext
+    description: |
+      Arbitrary-precision arithmetic.
+
+
+  - target: curses
+    section: ext
+    description: |
+      Interface to the "curses" character-based interface library.
+
+
+  - target: dbm
+    section: ext
+    description: |
+      Read and write 'db' files.
+
+
+  - target: digest
+    section: ext
+    description: |
+      MD5 and SHA1 digest implementations.
+
+
+  - target: dl
+    section: ext
+    description: |
+      "Interface to the Dynamic Loader, for creating extensions."
+
+
+  - target: enumerator
+    section: ext
+    mainpage: Enumerable
+    description: |
+      Flexible enumeration capabilities.
+
+
+  - target: etc
+    section: ext
+    mainpage: Etc
+    description: |
+      Access to UNIX users and groups information.
+
+
+  - target: fcntl
+    section: ext
+    mainpage: Fcntl
+    description: |
+      Provides constant definitions for IO#fcntl.
+
+
+  - target: gdbm
+    section: ext
+    description: |
+      Read and write GNU 'db' files.
+
+
+  - target: iconv
+    section: ext
+    description: |
+
+
+  - target: io/wait
+    section: ext
+    description: |
+
+
+  - target: nkf
+    section: ext
+    description: |
+
+
+  - target: openssl
+    section: ext
+    description: |
+      Secure socket layer, including HTTP, FTP, and Telnet implementations.
+
+
+  - target: pty
+    section: ext
+    description: |
+      Executes commands as if their standard I/O is connected to ttys.
+
+
+  - target: racc
+    section: ext
+    description: |
+      "LALR(1) parser generator for Ruby."
+
+
+  - target: readline
+    section: ext
+    description: |
+      Command-line editing and history.
+
+
+  - target: sdbm
+    section: ext
+    description: |
+      Yet another 'db' file interface.
+
+
+  - target: socket
+    section: ext
+    description: |
+      Implements several socket classes for UDP, TCP, UNIX, SOCKS, as well as
+      a TCPServer class.
+
+
+  - target: stringio
+    section: ext
+    description: |
+      Implements StringIO, which allows IO-like operations on a String-like
+      object.
+
+
+  - target: strscan
+    section: ext
+    description: |
+      A fast string scanner.
+
+
+  - target: syck
+    section: ext
+    description: |
+      Fast YAML implementation.
+
+
+  - target: syslog
+    section: ext
+    description: |
+      Wrapper for UNIX Syslog system calls.
+
+
+  - target: tcltklib
+    section: ext
+    description: |
+
+
+  - target: tk
+    section: ext
+    exclude: sample
+    description: |
+
+
+  - target: Win32API
+    section: ext
+    description: |
+      Interface to Windows registry.
+
+
+  - target: win32ole
+    section: ext
+    description: |
+      Interface to Win32 OLE automation.
+
+
+  - target: zlib
+    section: ext
+    description: |
+      Interface to UNIX zlib (gzip streams).
+
+
