@@ -44,18 +44,18 @@ Successor of [sdoc_all](https://github.com/toy/sdoc_all).
 
 Specify what to document using:
 
-- `source`: path to ruby source
-- `archive`: path to archive with ruby source (bzipped tar, gzipped tar or zip)
-- `version`: ruby version in form X.Y, X.Y.Z or X.Y.Z-pPPP. Source will be downloaded from github.com/ruby/ruby or ruby-lang.org
-- `binary`: command which is asked to run code to automatically determine ruby version. Source will be downloaded as for version specifier
+- `source` — path to ruby source
+- `archive` — path to archive with ruby source (bzipped tar, gzipped tar or zip)
+- `version` — ruby version in form X.Y, X.Y.Z or X.Y.Z-pPPP. Source will be downloaded from github.com/ruby/ruby or ruby-lang.org
+- `binary` — command which is asked to run code to automatically determine ruby version. Source will be downloaded as for version specifier
 
 All those specifiers accepts multiple entries. Default option is `binary`, 'ruby' binary is used if version is not specified.
 
 Other options:
 
-- `format`: can be `:all` to simply document all code, `:separate` to build core documentation and stdlib documentation separately and `:integrate` to integrate all stdlib to core
-- `except`: skip documenting certain parts (like `win32ole` and `tk`)
-- `index`: specify folder containing index.html to replace front page. Good place for cheat sheet or quick ref like one downloaded from [zenspider](http://www.zenspider.com/Languages/Ruby/QuickRef.html).
+- `format` — can be `:all` to simply document all code, `:separate` to build core documentation and stdlib documentation separately and `:integrate` to integrate all stdlib to core
+- `except` — skip documenting certain parts (like `win32ole` and `tk`)
+- `index` — specify folder containing index.html to replace front page. Good place for cheat sheet or quick ref like one downloaded from [zenspider](http://www.zenspider.com/Languages/Ruby/QuickRef.html).
 
 ### rails
 
