@@ -31,6 +31,7 @@ module Doc
       def tasks
         @specs.map do |spec|
           main = spec.rdoc_options.each_cons(2).select{ |key, value| %w[--main -m].include?(key) }.map(&:last).first
+          next if spec.respond_to?(:default_gem?) && spec.default_gem?
           Dir.chdir(spec.full_gem_path) do
             file_list = FileList.new
             file_list.include *spec.extra_rdoc_files
@@ -44,7 +45,7 @@ module Doc
               :main => main,
             })
           end
-        end
+        end.compact
       end
 
     private
