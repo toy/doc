@@ -1,6 +1,7 @@
 require 'digest/sha2'
 require 'shellwords'
 require 'sdoc'
+require 'yaml'
 
 module Doc
   class BaseTask
@@ -25,11 +26,12 @@ module Doc
           doc_dir / '.#{name}_state'
         end
         def #{name}_state_changed?
-          !#{name}_state_path.exist? || Marshal.load(#{name}_state_path.read) != #{name}_state
-        rescue true
+          !#{name}_state_path.exist? || YAML.load(#{name}_state_path.read) != #{name}_state
+        rescue
+          true
         end
         def write_#{name}_state
-          #{name}_state_path.write(Marshal.dump(#{name}_state))
+          #{name}_state_path.write(YAML.dump(#{name}_state))
         end
       RUBY
     end
