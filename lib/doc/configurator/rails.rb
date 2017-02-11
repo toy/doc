@@ -32,12 +32,9 @@ module Doc
 
     private
 
-      def version_less_than_3?(version)
-        version.segments.first < 3
-      end
-
       def paths_to_document_for_version(version)
-        code = if version_less_than_3?(version)
+        code = case version.segments.first
+        when 2
           <<-RUBY
             gem 'rails', ARGV.first
             require 'rdoc/task'
@@ -75,7 +72,7 @@ module Doc
 
             load 'tasks/documentation.rake'
           RUBY
-        else
+        when 3
           <<-RUBY
             gem 'rails', ARGV.first
             require 'rdoc/task'
@@ -88,6 +85,26 @@ module Doc
             end
 
             load 'rails/tasks/documentation.rake'
+          RUBY
+        else
+          <<-RUBY
+            gem 'rails', ARGV.first
+            require 'rdoc/task'
+            require 'rails/api/task'
+
+            module Rails
+              module API
+                class InstalledTask < StableTask
+                  def component_root_dir(component)
+                    Gem::Specification.find_by_name(component).gem_dir
+                  end
+                end
+              end
+            end
+
+            task = Rails::API::InstalledTask.new('rdoc')
+            task.configure_rdoc_files
+            puts task.rdoc_files
           RUBY
         end
         args = %W[ruby -r rubygems -e #{code} -- #{version}]
