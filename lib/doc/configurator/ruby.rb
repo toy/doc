@@ -37,8 +37,6 @@ module Doc
             raise 'index should be a path to directory with index.html inside'
           end
         end
-      rescue => e
-        raise ConfigError.new(self, e)
       end
 
       def avaliable_formats
