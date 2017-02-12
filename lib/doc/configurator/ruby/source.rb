@@ -13,6 +13,7 @@ module Doc
           version = VersionSpecifier.new(`#{binary} -e 'print "\#{RUBY_VERSION}-p\#{RUBY_PATCHLEVEL}"'`)
           if $?.success?
             if version.valid?
+              version = version.drop unless version < VersionSpecifier.new(2.1)
               by_version(version, update)
             else
               raise "invalid version from `#{binary}`: #{version.to_s.inspect}"
@@ -44,7 +45,7 @@ module Doc
             if path.basename.to_s =~ /^(.*)(?i:\.(tar\.(?:gz|bz2)|tgz|tbz|zip))$/
               dir, extension = sources_dir / $1, $2.downcase
               unless dir.exist?
-                Dir.mktmpdir 'ruby' do |d|
+                FSPath.temp_dir 'ruby', sources_dir do |d|
                   begin
                     case extension
                     when 'tbz', 'tar.bz2'
@@ -55,7 +56,7 @@ module Doc
                       Command.run('unzip', '-q', path, '-d', d)
                     end
 
-                    children = FSPath(d).children
+                    children = d.children
                     if children.length == 1
                       children.first.rename(dir)
                     else
@@ -104,8 +105,7 @@ module Doc
         end
 
         def tempfile_for(dst)
-          Tempfile.open 'ruby' do |f|
-            path = FSPath(f.path)
+          FSPath.temp_file_path 'ruby', sources_dir do |path|
             yield path
             path.rename(dst)
           end
@@ -122,8 +122,8 @@ module Doc
         def tmpdir_for_latest_version_from_tag_list(command, regexp, version)
           if tag_version = latest_version_from_tag_list(command, regexp, version)
             unless path_for_version(tag_version)
-              Dir.mktmpdir 'ruby' do |d|
-                tmp_dir = FSPath(d) / tag_version.dir_name
+              FSPath.temp_dir 'ruby', sources_dir do |d|
+                tmp_dir = d / tag_version.dir_name
                 if yield(tmp_dir, tag_version)
                   tmp_dir.rename(sources_dir / tag_version.dir_name)
                 end
@@ -149,11 +149,11 @@ module Doc
         FTP_HOST = 'ftp.ruby-lang.org'
         SVN_TAGS_URL = 'http://svn.ruby-lang.org/repos/ruby/tags/'
         SVN_TAG_LIST_COMMAND = "svn list --non-interactive #{SVN_TAGS_URL}"
-        SVN_TAG_REGEXP = /^(v\d+(?:_\d+){3})\/$/
+        SVN_TAG_REGEXP = /^(v\d+(?:_\d+){2,3})\/$/
         GIT_BARE_URL = 'github.com/ruby/ruby'
         GIT_URL = "git://#{GIT_BARE_URL}.git"
         GIT_TAG_LIST_COMMAND = "git ls-remote -t #{GIT_URL}"
-        GIT_TAG_REGEXP = /^.*\t(refs\/tags\/v\d+(?:_\d+){3})$/
+        GIT_TAG_REGEXP = /^.*\t(refs\/tags\/v\d+(?:_\d+){2,3})$/
 
         def download_version_via_ftp(version)
           Net::FTP.open(FTP_HOST) do |ftp|

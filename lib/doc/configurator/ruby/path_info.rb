@@ -9,7 +9,7 @@ module Doc
 
         def self.for_path(path)
           name = path.basename.to_s
-          if name =~ /^ruby-(\d+\.\d+\.\d+-p\d+)(?i:\.(tar\.(?:gz|bz2)|tgz|tbz|zip))?$/
+          if name =~ /^ruby-(\d+\.\d+\.\d+(?:-p\d+)?)(?i:\.(tar\.(?:gz|bz2)|tgz|tbz|zip))?$/
             extension = $2 ? $2.downcase : :dir
             type = ({'tar.bz2' => 'tbz', 'tar.gz' => 'tgz'}[extension] || extension).to_sym
             new(path, name, type, $1, $1.scan(/\d+/).map(&:to_i))

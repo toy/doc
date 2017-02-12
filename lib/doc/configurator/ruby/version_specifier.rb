@@ -9,6 +9,10 @@ module Doc
           @parts = str.scan(/\d+/).map(&:to_i)
         end
 
+        def drop
+          self.class.new(parts.drop(1).join('.'))
+        end
+
         def valid?
           str =~ /^\d+\.\d+(?:\.\d+(?:-p\d+)?)?$/
         end
@@ -18,7 +22,8 @@ module Doc
         end
 
         def dir_name
-          'ruby-%d.%d.%d-p%d' % parts
+          fmt = 'ruby' + %w[-%d .%d .%d -p%d].take(parts.length).join('')
+          fmt % parts
         end
 
         include Comparable
