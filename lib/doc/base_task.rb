@@ -61,9 +61,10 @@ module Doc
     def run(force = false)
       if force || run?
         if doc_dir.exist?
-          in_progress_message %W[rm -r #{doc_dir}].shelljoin
+          $stderr.puts %W[rm -r #{doc_dir}].shelljoin
           doc_dir.rmtree
         end
+        Progress.note = title
         build
         write_config_state
         @state = control_files_exist? ? :succeeded : :failed
@@ -86,14 +87,6 @@ module Doc
 
     def loaded_gem_version(gem)
       Gem.loaded_specs[gem].version
-    end
-
-    def in_progress_message(message)
-      if Progress.running?
-        Progress.note = message
-      else
-        $stderr.puts message
-      end
     end
   end
 end
