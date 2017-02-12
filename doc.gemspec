@@ -16,9 +16,9 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = %w[lib]
 
-  s.add_runtime_dependency 'sdoc', '~> 0.2.0'
-  s.add_runtime_dependency 'fspath'
-  s.add_runtime_dependency 'progress', '~> 2.4'
+  s.add_runtime_dependency 'sdoc', '~> 0.2'
+  s.add_runtime_dependency 'fspath', '~> 3.0'
+  s.add_runtime_dependency 'progress', '~> 3.0'
   s.add_runtime_dependency 'net-ftp-list'
   s.add_runtime_dependency 'rake'
 end
