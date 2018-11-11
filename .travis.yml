@@ -1,0 +1,6 @@
+sudo: false
+language: ruby
+script:
+  - gem build *.gemspec
+  - gem install *.gem
+  - docr test
